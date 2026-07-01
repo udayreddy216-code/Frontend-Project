@@ -2,19 +2,37 @@ pipeline {
 
     agent any
 
+    environment {
+        IMAGE_NAME = "frontend-login"
+        IMAGE_TAG = "v1"
+    }
+
     stages {
 
         stage('Clone Repository') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/udayreddy216-code/Frontend-Project.git'
+                sh '''
+                git clone https://github.com/udayreddy216-code/Frontend-Project.git
+                '''
             }
         }
 
-        stage('Verify Files') {
+        stage('Verify') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
+                sh '''
+                cd Frontend-Project
+                pwd
+                ls -la
+                '''
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                cd Frontend-Project
+                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                '''
             }
         }
 
