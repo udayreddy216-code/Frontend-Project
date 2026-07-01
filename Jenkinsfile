@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "frontend-login"
-        IMAGE_TAG = "v1"
-        CONTAINER_NAME = "frontend-container"
+        IMAGE_NAME = "frontendd-login"
+        IMAGE_TAG = "v2"
+        CONTAINER_NAME = "frontendd-container"
     }
 
     stages {
